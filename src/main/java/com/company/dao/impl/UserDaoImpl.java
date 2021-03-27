@@ -3,6 +3,7 @@ package com.company.dao.impl;
 import com.company.dao.inter.UserDaoInter;
 import com.company.entity.User;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.List;
@@ -40,7 +41,6 @@ public class UserDaoImpl implements UserDaoInter {
 
     @Override
     public boolean upDateUser(User u) {
-
         em.merge(u);
         return true;
 
@@ -48,7 +48,6 @@ public class UserDaoImpl implements UserDaoInter {
 
     @Override
     public boolean removeUser(int id) {
-
         User u = em.find(User.class, id);
         em.remove(u);
         return true;
@@ -56,14 +55,12 @@ public class UserDaoImpl implements UserDaoInter {
 
     @Override
     public boolean addUser(User u) {
-
         em.persist(u);
         return true;
     }
 
     @Override
     public User getById(int userid) {
-
         User u = em.find(User.class, userid);
         return u;
     }

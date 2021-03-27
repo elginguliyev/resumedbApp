@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.dao.inter.UserDaoInter;
+import com.company.dao.inter.UserRepository;
 import com.company.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -13,7 +14,7 @@ import java.util.List;
 @SpringBootApplication
 public class ResumeDbAppJpaSpringApplication {
 	@Autowired
-	public UserDaoInter userdao;
+	public UserRepository userRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ResumeDbAppJpaSpringApplication.class, args);
@@ -25,7 +26,7 @@ public class ResumeDbAppJpaSpringApplication {
 
 			@Override
 			public void run(String... args) throws Exception {
-				List<User> list=userdao.getAllUser(null, null );
+				List<User> list=userRepository.findAll();
 				System.out.println(list);
 			}
 		};
